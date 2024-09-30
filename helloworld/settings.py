@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,8 +28,10 @@ SECRET_KEY = 'django-insecure-&ug-=exwno0l+ddy=@9w(=t4eveu+f%jz!l7fe%3eokm9#0u$)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['13.209.93.212','localhost','127.0.0.1']
+# Local envirnonemnt
+#ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0']
+# AwS
+ALLOWED_HOSTS = ['13.209.93.212','localhost','127.0.0.1','0.0.0.0']
 
 
 # Application definition
@@ -75,8 +81,16 @@ WSGI_APPLICATION = 'helloworld.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':  os.getenv('DATABASE_NAME'),
+        #'NAME': 'helloworlddjango', #local db name
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '',
+
     }
 }
 
@@ -121,3 +135,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
