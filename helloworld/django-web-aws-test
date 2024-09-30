@@ -4,11 +4,11 @@ server_name 13.209.93.212;
 
 location = /favicon.ico { access_log off; log_not_found off; }
 location /static/ {
-root /home/ubuntu/django-web-aws-test;
+root /home/ubuntu/django-web-aws-test/helloworld;
 }
 
 location /media/ {
-root /home/ubuntu/django-web-aws-test;
+root /home/ubuntu/django-web-aws-test/helloworld;
 }
 
 location / {
