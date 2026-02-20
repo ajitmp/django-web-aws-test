@@ -13,12 +13,27 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-# Load environment variables from .env file
-load_dotenv()
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+# ENV_FILE = '.env.production' if not DEBUG else '.env.development'
+
+# # Load the environment variables from .env file
+# env_path = Path('.') / ENV_FILE
+# load_dotenv(dotenv_path=env_path)
+# # Load environment variables from .env file
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# env_path = Path(".") / ".env.development"
+# load_dotenv(dotenv_path=env_path)
+load_dotenv(BASE_DIR / ".env.development")
+
+print("USER:", os.getenv("DATABASE_USER"))
+print("PASS:", os.getenv("DATABASE_PASSWORD"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -26,10 +41,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-&ug-=exwno0l+ddy=@9w(=t4eveu+f%jz!l7fe%3eokm9#0u$)'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 # Local envirnonemnt
-#ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0']
+# ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0']
 # AwS
 ALLOWED_HOSTS = ['13.209.93.212','localhost','127.0.0.1','0.0.0.0']
 
@@ -85,12 +99,12 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':  os.getenv('DATABASE_NAME'),
-        #'NAME': 'helloworlddjango', #local db name
+        #'NAME':  os.getenv('DATABASE_NAME'),
+        'NAME': 'helloworlddjango', #local db name
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
 
     }
 }

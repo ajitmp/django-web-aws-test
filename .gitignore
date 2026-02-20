@@ -1,0 +1,65 @@
+*.env.*
+*.pyc
+
+*.zip
+venv/
+.venv/
+env/
+
+# =========================
+# Python bytecode
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Virtual environments
+# =========================
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+# Django
+# =========================
+db.sqlite3
+*.sqlite3
+*.log
+
+# Static / media (optional depending on setup)
+staticfiles/
+media/
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+*.pem
+*.key
+
+# =========================
+# IDE / OS
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# =========================
+# Archives / Large files
+# =========================
+*.zip
+*.tar
+*.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenv
+venv/
+.env*
